@@ -5,9 +5,10 @@ import axios from 'axios';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
+import { Web } from '../lib/jawi.js';
 
 const __filename = fileURLToPath(import.meta.url);
-const API_BASE = "https://xjawadtechyt.vercel.app";
+const API_BASE = Web;
 
 const toSmallCaps = (text) => {
     const map = {
