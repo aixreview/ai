@@ -8,40 +8,38 @@ const __filename = fileURLToPath(import.meta.url);
 const API_BASE = "https://jawadtechyt.onrender.com/gpt2?q=";
 
 // Helper function to query the AI API
-async function askAI(q) {
-    const res = await axios.get(`${API_BASE}${encodeURIComponent(q)}`);
+async function askAI(prompt) {
+    const res = await axios.get(`${API_BASE}${encodeURIComponent(prompt)}`);
     if (res.data.status) return res.data.result;
     throw new Error("API Error");
 }
 
 // ==================== CORE COMMANDS ====================
 
-// .ai command
 cmd({
     pattern: "ai",
     desc: "Chat with AI",
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .ai Your question");
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .ai Your question");
     try {
-        const answer = await askAI(q);
+        const answer = await askAI(text);
         reply(answer);
     } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// .bot command
 cmd({
     pattern: "bot",
     desc: "Chat with Bot AI",
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .bot Your question");
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .bot Your question");
     try {
-        const answer = await askAI(q);
+        const answer = await askAI(text);
         reply(answer);
     } catch (e) { reply("❌ Failed to connect to API."); }
 });
@@ -54,9 +52,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -65,9 +63,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt2 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt2 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -76,9 +74,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt3 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt3 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -87,9 +85,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt35turbo Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt35turbo Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -98,9 +96,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt4 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt4 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -109,9 +107,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt4turbo Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt4turbo Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -120,9 +118,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt4o Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt4o Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -131,9 +129,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt4omini Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt4omini Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -142,9 +140,9 @@ cmd({
     category: "ai",
     react: "👁️",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt4vision Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt4vision Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -153,9 +151,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt4all Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt4all Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -164,9 +162,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt5 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt5 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -175,9 +173,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gpt5mini Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gpt5mini Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -186,9 +184,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .chatgpt Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .chatgpt Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -197,9 +195,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .chatgpt35 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .chatgpt35 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -208,9 +206,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .chatgpt4 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .chatgpt4 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -219,9 +217,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .chatgpt4o Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .chatgpt4o Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -230,9 +228,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .chatgpt4turbo Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .chatgpt4turbo Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -241,9 +239,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .chatgptplus Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .chatgptplus Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -252,9 +250,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .chatgptelite Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .chatgptelite Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 // ==================== OPENAI o-SERIES ====================
@@ -265,9 +263,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .o1 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .o1 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -276,9 +274,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .o1mini Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .o1mini Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -287,9 +285,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .o1preview Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .o1preview Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -298,9 +296,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .o3 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .o3 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -309,9 +307,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .o3mini Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .o3mini Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -320,9 +318,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .o4 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .o4 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -331,9 +329,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .o4mini Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .o4mini Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -342,9 +340,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .o5 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .o5 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -353,9 +351,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .o5mini Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .o5mini Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 // ==================== COPILOT MODELS ====================
@@ -366,9 +364,9 @@ cmd({
     category: "ai",
     react: "✨",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .copilot Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .copilot Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -377,9 +375,9 @@ cmd({
     category: "ai",
     react: "💙",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .mscopilot Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .mscopilot Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -388,9 +386,9 @@ cmd({
     category: "ai",
     react: "🎯",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .elitecopilot Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .elitecopilot Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 // ==================== DEEPSEEK MODELS ====================
@@ -401,9 +399,9 @@ cmd({
     category: "ai",
     react: "🐋",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseek Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseek Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -412,9 +410,9 @@ cmd({
     category: "ai",
     react: "🐋",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekv2 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekv2 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -423,31 +421,9 @@ cmd({
     category: "ai",
     react: "🐋",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekv3 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
-});
-
-cmd({
-    pattern: "deepseekr1",
-    desc: "Chat with DeepSeek R1",
-    category: "ai",
-    react: "🐋",
-    filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekr1 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
-});
-
-cmd({
-    pattern: "deepseekr2",
-    desc: "Chat with DeepSeek R2",
-    category: "ai",
-    react: "🐋",
-    filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekr2 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekv3 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -456,9 +432,31 @@ cmd({
     category: "ai",
     react: "🐋",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekv4 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekv4 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
+cmd({
+    pattern: "deepseekr1",
+    desc: "Chat with DeepSeek R1",
+    category: "ai",
+    react: "🐋",
+    filename: __filename
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekr1 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
+cmd({
+    pattern: "deepseekr2",
+    desc: "Chat with DeepSeek R2",
+    category: "ai",
+    react: "🐋",
+    filename: __filename
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekr2 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -467,9 +465,9 @@ cmd({
     category: "ai",
     react: "💻",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekcoder Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekcoder Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -478,9 +476,9 @@ cmd({
     category: "ai",
     react: "💻",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekcoder2 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekcoder2 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -489,9 +487,9 @@ cmd({
     category: "ai",
     react: "🧮",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekmath Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekmath Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -500,9 +498,9 @@ cmd({
     category: "ai",
     react: "🐋",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekllm Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekllm Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -511,9 +509,9 @@ cmd({
     category: "ai",
     react: "👁️",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekvl Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekvl Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -522,9 +520,9 @@ cmd({
     category: "ai",
     react: "🐋",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .deepseekchat Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .deepseekchat Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 // ==================== GEMINI MODELS ====================
@@ -535,9 +533,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -546,9 +544,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .geminipro Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .geminipro Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -557,9 +555,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .geminiultra Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .geminiultra Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -568,9 +566,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemininano Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemininano Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -579,9 +577,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini15 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini15 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -590,9 +588,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini15pro Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini15pro Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -601,9 +599,9 @@ cmd({
     category: "ai",
     react: "⚡",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini15flash Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini15flash Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -612,9 +610,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini20 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini20 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -623,9 +621,9 @@ cmd({
     category: "ai",
     react: "⚡",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini20flash Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini20flash Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -634,9 +632,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini25 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini25 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -645,9 +643,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini25pro Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini25pro Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -656,21 +654,20 @@ cmd({
     category: "ai",
     react: "⚡",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini25flash Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini25flash Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Latest Gemini 3 Series
 cmd({
     pattern: "gemini3",
     desc: "Chat with Gemini 3",
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini3 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini3 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -679,9 +676,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini3pro Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini3pro Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -690,9 +687,9 @@ cmd({
     category: "ai",
     react: "⚡",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini3flash Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini3flash Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -701,9 +698,9 @@ cmd({
     category: "ai",
     react: "💎",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gemini3ultra Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gemini3ultra Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -712,9 +709,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .bard Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .bard Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -723,9 +720,9 @@ cmd({
     category: "ai",
     react: "🌴",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .palm Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .palm Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -734,9 +731,9 @@ cmd({
     category: "ai",
     react: "🌴",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .palm2 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .palm2 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 // ==================== GROK MODELS ====================
@@ -747,9 +744,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grok Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grok Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -758,9 +755,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grok1 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grok1 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -769,9 +766,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grok15 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grok15 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -780,9 +777,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grok2 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grok2 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -791,9 +788,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grok2mini Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grok2mini Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -802,9 +799,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grok3 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grok3 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -813,9 +810,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grok3mini Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grok3mini Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -824,9 +821,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grok4 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grok4 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -835,9 +832,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grok4mini Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grok4mini Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -846,9 +843,9 @@ cmd({
     category: "ai",
     react: "🚀",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grokbeta Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grokbeta Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -857,9 +854,9 @@ cmd({
     category: "ai",
     react: "👁️",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grokvision Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grokvision Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 // ==================== CLAUDE MODELS ====================
@@ -870,9 +867,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -881,9 +878,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude1 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude1 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -892,9 +889,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude2 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude2 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -903,9 +900,9 @@ cmd({
     category: "ai",
     react: "⚡",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claudeinstant Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claudeinstant Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -914,9 +911,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude3 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude3 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -925,9 +922,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude3opus Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude3opus Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -936,9 +933,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude3sonnet Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude3sonnet Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -947,9 +944,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude3haiku Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude3haiku Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -958,9 +955,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude35 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude35 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -969,9 +966,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude35sonnet Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude35sonnet Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -980,9 +977,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude35haiku Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude35haiku Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -991,9 +988,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude37 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude37 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1002,9 +999,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude37sonnet Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude37sonnet Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1013,9 +1010,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude4 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude4 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1024,9 +1021,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude4opus Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude4opus Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1035,9 +1032,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claude4sonnet Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claude4sonnet Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1046,9 +1043,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claudeopus Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claudeopus Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1057,9 +1054,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claudesonnet Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claudesonnet Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1068,9 +1065,9 @@ cmd({
     category: "ai",
     react: "🎭",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .claudehaiku Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .claudehaiku Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 // ==================== QWEN MODELS ====================
@@ -1081,9 +1078,9 @@ cmd({
     category: "ai",
     react: "🌟",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwen Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwen Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1092,9 +1089,9 @@ cmd({
     category: "ai",
     react: "🌟",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwen15 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwen15 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1103,9 +1100,9 @@ cmd({
     category: "ai",
     react: "🌟",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwen2 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwen2 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1114,9 +1111,9 @@ cmd({
     category: "ai",
     react: "🌟",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwen25 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwen25 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1125,9 +1122,9 @@ cmd({
     category: "ai",
     react: "🌟",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwen3 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwen3 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1136,9 +1133,9 @@ cmd({
     category: "ai",
     react: "💻",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwencoder Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwencoder Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1147,9 +1144,9 @@ cmd({
     category: "ai",
     react: "🧮",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwenmath Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwenmath Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1158,9 +1155,9 @@ cmd({
     category: "ai",
     react: "👁️",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwenvl Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwenvl Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1169,9 +1166,9 @@ cmd({
     category: "ai",
     react: "🌟",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwenmax Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwenmax Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1180,9 +1177,9 @@ cmd({
     category: "ai",
     react: "🌟",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwenplus Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwenplus Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1191,9 +1188,9 @@ cmd({
     category: "ai",
     react: "⚡",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .qwenturbo Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .qwenturbo Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 // ==================== OTHER AI MODELS ====================
@@ -1204,9 +1201,9 @@ cmd({
     category: "ai",
     react: "🦙",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .llama2 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .llama2 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1215,9 +1212,9 @@ cmd({
     category: "ai",
     react: "🦙",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .llama3 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .llama3 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1226,9 +1223,9 @@ cmd({
     category: "ai",
     react: "🦙",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .llama4 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .llama4 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1237,9 +1234,9 @@ cmd({
     category: "ai",
     react: "🌬️",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .mistral Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .mistral Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1248,9 +1245,9 @@ cmd({
     category: "ai",
     react: "🌬️",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .mixtral Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .mixtral Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1259,9 +1256,9 @@ cmd({
     category: "ai",
     react: "🦅",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .falcon Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .falcon Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1270,9 +1267,9 @@ cmd({
     category: "ai",
     react: "🌸",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .bloom Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .bloom Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1281,9 +1278,9 @@ cmd({
     category: "ai",
     react: "🌸",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .bloomz Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .bloomz Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1292,9 +1289,9 @@ cmd({
     category: "ai",
     react: "🐋",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .orca Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .orca Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1303,9 +1300,9 @@ cmd({
     category: "ai",
     react: "🦙",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .vicuna Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .vicuna Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1314,9 +1311,9 @@ cmd({
     category: "ai",
     react: "🦙",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .alpaca Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .alpaca Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1325,9 +1322,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .phi2 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .phi2 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1336,9 +1333,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .phi3 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .phi3 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1347,9 +1344,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .phi4 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .phi4 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1358,9 +1355,9 @@ cmd({
     category: "ai",
     react: "🧙",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .wizard Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .wizard Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1369,9 +1366,9 @@ cmd({
     category: "ai",
     react: "💻",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .codet5 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .codet5 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1380,9 +1377,9 @@ cmd({
     category: "ai",
     react: "💻",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .codex Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .codex Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1391,9 +1388,9 @@ cmd({
     category: "ai",
     react: "💻",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .starcoder Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .starcoder Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1402,9 +1399,9 @@ cmd({
     category: "ai",
     react: "💻",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .codegen Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .codegen Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1413,9 +1410,9 @@ cmd({
     category: "ai",
     react: "🌙",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .kimi Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .kimi Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1424,9 +1421,9 @@ cmd({
     category: "ai",
     react: "🔍",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .perplexity Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .perplexity Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1435,9 +1432,9 @@ cmd({
     category: "ai",
     react: "🌟",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .yi Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .yi Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1446,9 +1443,9 @@ cmd({
     category: "ai",
     react: "🌟",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .yi34b Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .yi34b Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1457,9 +1454,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .command Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .command Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1468,9 +1465,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .commandr Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .commandr Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1479,9 +1476,9 @@ cmd({
     category: "ai",
     react: "🦕",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .jurassic Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .jurassic Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1490,9 +1487,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .ai21 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .ai21 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1501,9 +1498,9 @@ cmd({
     category: "ai",
     react: "☀️",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .solar Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .solar Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1512,9 +1509,9 @@ cmd({
     category: "ai",
     react: "✨",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .lumin Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .lumin Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1523,9 +1520,9 @@ cmd({
     category: "ai",
     react: "🔴",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .redpajama Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .redpajama Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1534,9 +1531,9 @@ cmd({
     category: "ai",
     react: "🐑",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .dolly Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .dolly Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1545,9 +1542,9 @@ cmd({
     category: "ai",
     react: "🤗",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .hugging Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .hugging Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1556,9 +1553,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .openassist Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .openassist Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1567,9 +1564,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gptneo Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gptneo Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1578,9 +1575,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .gptj Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .gptj Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1589,9 +1586,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .flant5 Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .flant5 Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1600,9 +1597,9 @@ cmd({
     category: "ai",
     react: "⭐",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .starlin Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .starlin Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 // ==================== SPECIALTY AI COMMANDS ====================
@@ -1613,9 +1610,9 @@ cmd({
     category: "ai",
     react: "💬",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .talkai Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .talkai Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1624,9 +1621,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .brain Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .brain Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1635,9 +1632,9 @@ cmd({
     category: "ai",
     react: "👑",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .elite Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .elite Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1646,9 +1643,9 @@ cmd({
     category: "ai",
     react: "🤖",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .elitegpt Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .elitegpt Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1657,9 +1654,9 @@ cmd({
     category: "ai",
     react: "🤵",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .assistant Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .assistant Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1668,9 +1665,9 @@ cmd({
     category: "ai",
     react: "🧠",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .smart Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .smart Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1679,9 +1676,9 @@ cmd({
     category: "ai",
     react: "🌟",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .genius Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .genius Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1690,9 +1687,9 @@ cmd({
     category: "ai",
     react: "⚡",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .proai Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .proai Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1701,9 +1698,9 @@ cmd({
     category: "ai",
     react: "🔥",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .ultra Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .ultra Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1712,9 +1709,9 @@ cmd({
     category: "ai",
     react: "💪",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .maxai Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .maxai Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1723,9 +1720,9 @@ cmd({
     category: "ai",
     react: "⭐",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .nova Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .nova Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1734,9 +1731,9 @@ cmd({
     category: "ai",
     react: "✨",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .zenith Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .zenith Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1745,9 +1742,9 @@ cmd({
     category: "ai",
     react: "🏆",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .apex Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .apex Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1756,9 +1753,9 @@ cmd({
     category: "ai",
     react: "🔷",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .vertex Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .vertex Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1767,9 +1764,9 @@ cmd({
     category: "ai",
     react: "💓",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .pulse Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .pulse Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1778,9 +1775,9 @@ cmd({
     category: "ai",
     react: "⚛️",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .quantum Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .quantum Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1789,9 +1786,9 @@ cmd({
     category: "ai",
     react: "💚",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .neo Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .neo Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1800,9 +1797,9 @@ cmd({
     category: "ai",
     react: "🔱",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .omega Your question");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .omega Your question");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1811,9 +1808,9 @@ cmd({
     category: "ai",
     react: "🧮",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .mathgpt Your math problem");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .mathgpt Your math problem");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
 cmd({
@@ -1822,7 +1819,7 @@ cmd({
     category: "ai",
     react: "📝",
     filename: __filename
-}, async (conn, mek, m, { from, q, reply }) => {
-    if (!q) return reply("❌ *Usage:* .grammar Your text to check");
-    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+}, async (conn, mek, m, { from, text, reply }) => {
+    if (!text) return reply("❌ *Usage:* .grammar Your text to check");
+    try { reply(await askAI(text)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
