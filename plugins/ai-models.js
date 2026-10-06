@@ -5,7 +5,7 @@ import axios from 'axios';
 const __filename = fileURLToPath(import.meta.url);
 
 // Base API endpoint
-const API_BASE = "https://jawadtechyt.onrender.com/gpt2?q=";
+const API_BASE = "https://jawadtechhub.onrender.com/gpt2?q=";
 
 // Helper function to query the AI API
 async function askAI(prompt) {
