@@ -5,7 +5,7 @@ import axios from 'axios';
 const __filename = fileURLToPath(import.meta.url);
 
 // Base API endpoint
-const API_BASE = "https://api.nexray.eu.cc/ai/gpt-3.5-turbo?text=";
+const API_BASE = "https://jawadtechyt.onrender.com/gpt2?q=";
 
 // Helper function to query the AI API
 async function askAI(q) {
@@ -19,7 +19,7 @@ async function askAI(q) {
 // .ai command
 cmd({
     pattern: "ai",
-    desc: "Chat with AI (GPT-3.5 Turbo)",
+    desc: "Chat with AI",
     category: "ai",
     react: "🤖",
     filename: __filename
@@ -34,7 +34,7 @@ cmd({
 // .bot command
 cmd({
     pattern: "bot",
-    desc: "Chat with Bot AI (GPT-3.5 Turbo)",
+    desc: "Chat with Bot AI",
     category: "ai",
     react: "🤖",
     filename: __filename
@@ -48,10 +48,9 @@ cmd({
 
 // ==================== ChatGPT MODELS ====================
 
-// GPT-3.5 Turbo
 cmd({
     pattern: "gpt",
-    desc: "Chat with GPT-3.5 Turbo",
+    desc: "Chat with GPT",
     category: "ai",
     react: "🤖",
     filename: __filename
@@ -60,7 +59,17 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-3
+cmd({
+    pattern: "gpt2",
+    desc: "Chat with GPT-2 (JawadTech)",
+    category: "ai",
+    react: "🤖",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .gpt2 Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
 cmd({
     pattern: "gpt3",
     desc: "Chat with GPT-3",
@@ -72,7 +81,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-3.5 Turbo (alias)
 cmd({
     pattern: "gpt35turbo",
     desc: "Chat with GPT-3.5 Turbo",
@@ -84,7 +92,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-4
 cmd({
     pattern: "gpt4",
     desc: "Chat with GPT-4",
@@ -96,7 +103,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-4 Turbo
 cmd({
     pattern: "gpt4turbo",
     desc: "Chat with GPT-4 Turbo",
@@ -108,7 +114,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-4o
 cmd({
     pattern: "gpt4o",
     desc: "Chat with GPT-4o",
@@ -120,7 +125,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-4o Mini
 cmd({
     pattern: "gpt4omini",
     desc: "Chat with GPT-4o Mini",
@@ -132,7 +136,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-4 Vision
 cmd({
     pattern: "gpt4vision",
     desc: "Chat with GPT-4 Vision",
@@ -144,7 +147,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-4 All
 cmd({
     pattern: "gpt4all",
     desc: "Chat with GPT-4 All",
@@ -156,7 +158,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-5
 cmd({
     pattern: "gpt5",
     desc: "Chat with GPT-5",
@@ -168,7 +169,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-5 Mini
 cmd({
     pattern: "gpt5mini",
     desc: "Chat with GPT-5 Mini",
@@ -180,7 +180,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// ChatGPT
 cmd({
     pattern: "chatgpt",
     desc: "Chat with ChatGPT",
@@ -192,7 +191,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// ChatGPT 3.5
 cmd({
     pattern: "chatgpt35",
     desc: "Chat with ChatGPT 3.5",
@@ -204,7 +202,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// ChatGPT 4
 cmd({
     pattern: "chatgpt4",
     desc: "Chat with ChatGPT 4",
@@ -216,7 +213,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// ChatGPT 4o
 cmd({
     pattern: "chatgpt4o",
     desc: "Chat with ChatGPT 4o",
@@ -228,7 +224,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// ChatGPT 4 Turbo
 cmd({
     pattern: "chatgpt4turbo",
     desc: "Chat with ChatGPT 4 Turbo",
@@ -240,7 +235,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// ChatGPT Plus
 cmd({
     pattern: "chatgptplus",
     desc: "Chat with ChatGPT Plus",
@@ -252,7 +246,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// ChatGPT Elite
 cmd({
     pattern: "chatgptelite",
     desc: "Chat with ChatGPT Elite",
@@ -264,7 +257,8 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// OpenAI o1
+// ==================== OPENAI o-SERIES ====================
+
 cmd({
     pattern: "o1",
     desc: "Chat with OpenAI o1",
@@ -276,7 +270,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// OpenAI o1-mini
 cmd({
     pattern: "o1mini",
     desc: "Chat with OpenAI o1-mini",
@@ -288,7 +281,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// OpenAI o1-preview
 cmd({
     pattern: "o1preview",
     desc: "Chat with OpenAI o1-preview",
@@ -300,7 +292,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// OpenAI o3
 cmd({
     pattern: "o3",
     desc: "Chat with OpenAI o3",
@@ -312,7 +303,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// OpenAI o3-mini
 cmd({
     pattern: "o3mini",
     desc: "Chat with OpenAI o3-mini",
@@ -324,7 +314,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// OpenAI o4
 cmd({
     pattern: "o4",
     desc: "Chat with OpenAI o4",
@@ -336,9 +325,41 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
+cmd({
+    pattern: "o4mini",
+    desc: "Chat with OpenAI o4-mini",
+    category: "ai",
+    react: "🧠",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .o4mini Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
+cmd({
+    pattern: "o5",
+    desc: "Chat with OpenAI o5",
+    category: "ai",
+    react: "🧠",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .o5 Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
+cmd({
+    pattern: "o5mini",
+    desc: "Chat with OpenAI o5-mini",
+    category: "ai",
+    react: "🧠",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .o5mini Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
 // ==================== COPILOT MODELS ====================
 
-// Copilot
 cmd({
     pattern: "copilot",
     desc: "Chat with Copilot AI",
@@ -350,7 +371,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Microsoft Copilot
 cmd({
     pattern: "mscopilot",
     desc: "Chat with Microsoft Copilot",
@@ -362,7 +382,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Elite Copilot
 cmd({
     pattern: "elitecopilot",
     desc: "Chat with Elite Copilot",
@@ -376,7 +395,6 @@ cmd({
 
 // ==================== DEEPSEEK MODELS ====================
 
-// DeepSeek
 cmd({
     pattern: "deepseek",
     desc: "Chat with DeepSeek",
@@ -388,7 +406,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// DeepSeek V2
 cmd({
     pattern: "deepseekv2",
     desc: "Chat with DeepSeek V2",
@@ -400,7 +417,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// DeepSeek V3
 cmd({
     pattern: "deepseekv3",
     desc: "Chat with DeepSeek V3",
@@ -412,7 +428,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// DeepSeek R1
 cmd({
     pattern: "deepseekr1",
     desc: "Chat with DeepSeek R1",
@@ -424,7 +439,28 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// DeepSeek Coder
+cmd({
+    pattern: "deepseekr2",
+    desc: "Chat with DeepSeek R2",
+    category: "ai",
+    react: "🐋",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .deepseekr2 Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
+cmd({
+    pattern: "deepseekv4",
+    desc: "Chat with DeepSeek V4",
+    category: "ai",
+    react: "🐋",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .deepseekv4 Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
 cmd({
     pattern: "deepseekcoder",
     desc: "Chat with DeepSeek Coder",
@@ -436,7 +472,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// DeepSeek Coder V2
 cmd({
     pattern: "deepseekcoder2",
     desc: "Chat with DeepSeek Coder V2",
@@ -448,7 +483,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// DeepSeek Math
 cmd({
     pattern: "deepseekmath",
     desc: "Chat with DeepSeek Math",
@@ -460,7 +494,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// DeepSeek LLM
 cmd({
     pattern: "deepseekllm",
     desc: "Chat with DeepSeek LLM",
@@ -472,7 +505,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// DeepSeek VL
 cmd({
     pattern: "deepseekvl",
     desc: "Chat with DeepSeek VL",
@@ -484,7 +516,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// DeepSeek Chat
 cmd({
     pattern: "deepseekchat",
     desc: "Chat with DeepSeek Chat",
@@ -498,7 +529,6 @@ cmd({
 
 // ==================== GEMINI MODELS ====================
 
-// Gemini
 cmd({
     pattern: "gemini",
     desc: "Chat with Gemini",
@@ -510,7 +540,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini Pro
 cmd({
     pattern: "geminipro",
     desc: "Chat with Gemini Pro",
@@ -522,7 +551,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini Ultra
 cmd({
     pattern: "geminiultra",
     desc: "Chat with Gemini Ultra",
@@ -534,7 +562,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini Nano
 cmd({
     pattern: "gemininano",
     desc: "Chat with Gemini Nano",
@@ -546,7 +573,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini 1.5
 cmd({
     pattern: "gemini15",
     desc: "Chat with Gemini 1.5",
@@ -558,7 +584,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini 1.5 Pro
 cmd({
     pattern: "gemini15pro",
     desc: "Chat with Gemini 1.5 Pro",
@@ -570,7 +595,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini 1.5 Flash
 cmd({
     pattern: "gemini15flash",
     desc: "Chat with Gemini 1.5 Flash",
@@ -582,7 +606,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini 2.0
 cmd({
     pattern: "gemini20",
     desc: "Chat with Gemini 2.0",
@@ -594,7 +617,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini 2.0 Flash
 cmd({
     pattern: "gemini20flash",
     desc: "Chat with Gemini 2.0 Flash",
@@ -606,7 +628,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini 2.5
 cmd({
     pattern: "gemini25",
     desc: "Chat with Gemini 2.5",
@@ -618,7 +639,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini 2.5 Pro
 cmd({
     pattern: "gemini25pro",
     desc: "Chat with Gemini 2.5 Pro",
@@ -630,7 +650,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Gemini 2.5 Flash
 cmd({
     pattern: "gemini25flash",
     desc: "Chat with Gemini 2.5 Flash",
@@ -642,7 +661,51 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Bard
+// Latest Gemini 3 Series
+cmd({
+    pattern: "gemini3",
+    desc: "Chat with Gemini 3",
+    category: "ai",
+    react: "💎",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .gemini3 Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
+cmd({
+    pattern: "gemini3pro",
+    desc: "Chat with Gemini 3 Pro",
+    category: "ai",
+    react: "💎",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .gemini3pro Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
+cmd({
+    pattern: "gemini3flash",
+    desc: "Chat with Gemini 3 Flash",
+    category: "ai",
+    react: "⚡",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .gemini3flash Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
+cmd({
+    pattern: "gemini3ultra",
+    desc: "Chat with Gemini 3 Ultra",
+    category: "ai",
+    react: "💎",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .gemini3ultra Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
 cmd({
     pattern: "bard",
     desc: "Chat with Google Bard",
@@ -654,7 +717,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// PaLM
 cmd({
     pattern: "palm",
     desc: "Chat with PaLM",
@@ -666,7 +728,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// PaLM 2
 cmd({
     pattern: "palm2",
     desc: "Chat with PaLM 2",
@@ -680,7 +741,6 @@ cmd({
 
 // ==================== GROK MODELS ====================
 
-// Grok
 cmd({
     pattern: "grok",
     desc: "Chat with Grok",
@@ -692,7 +752,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Grok 1
 cmd({
     pattern: "grok1",
     desc: "Chat with Grok 1",
@@ -704,7 +763,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Grok 1.5
 cmd({
     pattern: "grok15",
     desc: "Chat with Grok 1.5",
@@ -716,7 +774,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Grok 2
 cmd({
     pattern: "grok2",
     desc: "Chat with Grok 2",
@@ -728,7 +785,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Grok 2 Mini
 cmd({
     pattern: "grok2mini",
     desc: "Chat with Grok 2 Mini",
@@ -740,7 +796,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Grok 3
 cmd({
     pattern: "grok3",
     desc: "Chat with Grok 3",
@@ -752,7 +807,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Grok 3 Mini
 cmd({
     pattern: "grok3mini",
     desc: "Chat with Grok 3 Mini",
@@ -764,7 +818,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Grok 4
 cmd({
     pattern: "grok4",
     desc: "Chat with Grok 4",
@@ -776,7 +829,17 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Grok Beta
+cmd({
+    pattern: "grok4mini",
+    desc: "Chat with Grok 4 Mini",
+    category: "ai",
+    react: "🚀",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .grok4mini Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
 cmd({
     pattern: "grokbeta",
     desc: "Chat with Grok Beta",
@@ -788,7 +851,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Grok Vision
 cmd({
     pattern: "grokvision",
     desc: "Chat with Grok Vision",
@@ -802,7 +864,6 @@ cmd({
 
 // ==================== CLAUDE MODELS ====================
 
-// Claude
 cmd({
     pattern: "claude",
     desc: "Chat with Claude",
@@ -814,7 +875,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 1
 cmd({
     pattern: "claude1",
     desc: "Chat with Claude 1",
@@ -826,7 +886,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 2
 cmd({
     pattern: "claude2",
     desc: "Chat with Claude 2",
@@ -838,7 +897,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude Instant
 cmd({
     pattern: "claudeinstant",
     desc: "Chat with Claude Instant",
@@ -850,7 +908,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 3
 cmd({
     pattern: "claude3",
     desc: "Chat with Claude 3",
@@ -862,7 +919,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 3 Opus
 cmd({
     pattern: "claude3opus",
     desc: "Chat with Claude 3 Opus",
@@ -874,7 +930,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 3 Sonnet
 cmd({
     pattern: "claude3sonnet",
     desc: "Chat with Claude 3 Sonnet",
@@ -886,7 +941,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 3 Haiku
 cmd({
     pattern: "claude3haiku",
     desc: "Chat with Claude 3 Haiku",
@@ -898,7 +952,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 3.5
 cmd({
     pattern: "claude35",
     desc: "Chat with Claude 3.5",
@@ -910,7 +963,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 3.5 Sonnet
 cmd({
     pattern: "claude35sonnet",
     desc: "Chat with Claude 3.5 Sonnet",
@@ -922,7 +974,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 3.5 Haiku
 cmd({
     pattern: "claude35haiku",
     desc: "Chat with Claude 3.5 Haiku",
@@ -934,7 +985,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 3.7
 cmd({
     pattern: "claude37",
     desc: "Chat with Claude 3.7",
@@ -946,7 +996,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 3.7 Sonnet
 cmd({
     pattern: "claude37sonnet",
     desc: "Chat with Claude 3.7 Sonnet",
@@ -958,7 +1007,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 4
 cmd({
     pattern: "claude4",
     desc: "Chat with Claude 4",
@@ -970,7 +1018,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 4 Opus
 cmd({
     pattern: "claude4opus",
     desc: "Chat with Claude 4 Opus",
@@ -982,7 +1029,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude 4 Sonnet
 cmd({
     pattern: "claude4sonnet",
     desc: "Chat with Claude 4 Sonnet",
@@ -994,7 +1040,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude Opus
 cmd({
     pattern: "claudeopus",
     desc: "Chat with Claude Opus",
@@ -1006,7 +1051,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude Sonnet
 cmd({
     pattern: "claudesonnet",
     desc: "Chat with Claude Sonnet",
@@ -1018,7 +1062,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Claude Haiku
 cmd({
     pattern: "claudehaiku",
     desc: "Chat with Claude Haiku",
@@ -1032,7 +1075,6 @@ cmd({
 
 // ==================== QWEN MODELS ====================
 
-// Qwen
 cmd({
     pattern: "qwen",
     desc: "Chat with Qwen",
@@ -1044,7 +1086,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Qwen 1.5
 cmd({
     pattern: "qwen15",
     desc: "Chat with Qwen 1.5",
@@ -1056,7 +1097,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Qwen 2
 cmd({
     pattern: "qwen2",
     desc: "Chat with Qwen 2",
@@ -1068,7 +1108,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Qwen 2.5
 cmd({
     pattern: "qwen25",
     desc: "Chat with Qwen 2.5",
@@ -1080,7 +1119,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Qwen 3
 cmd({
     pattern: "qwen3",
     desc: "Chat with Qwen 3",
@@ -1092,7 +1130,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Qwen Coder
 cmd({
     pattern: "qwencoder",
     desc: "Chat with Qwen Coder",
@@ -1104,7 +1141,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Qwen Math
 cmd({
     pattern: "qwenmath",
     desc: "Chat with Qwen Math",
@@ -1116,7 +1152,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Qwen VL
 cmd({
     pattern: "qwenvl",
     desc: "Chat with Qwen VL",
@@ -1128,7 +1163,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Qwen Max
 cmd({
     pattern: "qwenmax",
     desc: "Chat with Qwen Max",
@@ -1140,7 +1174,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Qwen Plus
 cmd({
     pattern: "qwenplus",
     desc: "Chat with Qwen Plus",
@@ -1152,7 +1185,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Qwen Turbo
 cmd({
     pattern: "qwenturbo",
     desc: "Chat with Qwen Turbo",
@@ -1166,7 +1198,6 @@ cmd({
 
 // ==================== OTHER AI MODELS ====================
 
-// Llama 2
 cmd({
     pattern: "llama2",
     desc: "Chat with Llama 2",
@@ -1178,7 +1209,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Llama 3
 cmd({
     pattern: "llama3",
     desc: "Chat with Llama 3",
@@ -1190,7 +1220,17 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Mistral
+cmd({
+    pattern: "llama4",
+    desc: "Chat with Llama 4",
+    category: "ai",
+    react: "🦙",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .llama4 Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
 cmd({
     pattern: "mistral",
     desc: "Chat with Mistral",
@@ -1202,7 +1242,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Mixtral
 cmd({
     pattern: "mixtral",
     desc: "Chat with Mixtral",
@@ -1214,7 +1253,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Falcon
 cmd({
     pattern: "falcon",
     desc: "Chat with Falcon",
@@ -1226,7 +1264,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Bloom
 cmd({
     pattern: "bloom",
     desc: "Chat with Bloom",
@@ -1238,7 +1275,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// BLOOMZ
 cmd({
     pattern: "bloomz",
     desc: "Chat with BLOOMZ",
@@ -1250,7 +1286,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Orca
 cmd({
     pattern: "orca",
     desc: "Chat with Orca",
@@ -1262,7 +1297,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Vicuna
 cmd({
     pattern: "vicuna",
     desc: "Chat with Vicuna",
@@ -1274,7 +1308,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Alpaca
 cmd({
     pattern: "alpaca",
     desc: "Chat with Alpaca",
@@ -1286,7 +1319,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Phi-2
 cmd({
     pattern: "phi2",
     desc: "Chat with Phi-2",
@@ -1298,7 +1330,28 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// WizardCoder
+cmd({
+    pattern: "phi3",
+    desc: "Chat with Phi-3",
+    category: "ai",
+    react: "🤖",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .phi3 Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
+cmd({
+    pattern: "phi4",
+    desc: "Chat with Phi-4",
+    category: "ai",
+    react: "🤖",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .phi4 Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
 cmd({
     pattern: "wizard",
     desc: "Chat with WizardCoder",
@@ -1310,7 +1363,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// CodeT5
 cmd({
     pattern: "codet5",
     desc: "Chat with CodeT5",
@@ -1322,7 +1374,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Codex
 cmd({
     pattern: "codex",
     desc: "Chat with Codex",
@@ -1334,7 +1385,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// StarCoder
 cmd({
     pattern: "starcoder",
     desc: "Chat with StarCoder",
@@ -1346,7 +1396,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// CodeGen
 cmd({
     pattern: "codegen",
     desc: "Chat with CodeGen",
@@ -1358,7 +1407,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Kimi
 cmd({
     pattern: "kimi",
     desc: "Chat with Kimi",
@@ -1370,7 +1418,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Perplexity
 cmd({
     pattern: "perplexity",
     desc: "Chat with Perplexity",
@@ -1382,7 +1429,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Yi
 cmd({
     pattern: "yi",
     desc: "Chat with Yi",
@@ -1394,7 +1440,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Yi-34B
 cmd({
     pattern: "yi34b",
     desc: "Chat with Yi-34B",
@@ -1406,7 +1451,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Command
 cmd({
     pattern: "command",
     desc: "Chat with Command AI",
@@ -1418,7 +1462,17 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Jurassic
+cmd({
+    pattern: "commandr",
+    desc: "Chat with Command R",
+    category: "ai",
+    react: "🤖",
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    if (!q) return reply("❌ *Usage:* .commandr Your question");
+    try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
+});
+
 cmd({
     pattern: "jurassic",
     desc: "Chat with Jurassic",
@@ -1430,7 +1484,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// AI21 Labs
 cmd({
     pattern: "ai21",
     desc: "Chat with AI21 Labs",
@@ -1442,7 +1495,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Solar
 cmd({
     pattern: "solar",
     desc: "Chat with Solar AI",
@@ -1454,7 +1506,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Lumin
 cmd({
     pattern: "lumin",
     desc: "Chat with Lumin AI",
@@ -1466,7 +1517,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// RedPajama
 cmd({
     pattern: "redpajama",
     desc: "Chat with RedPajama",
@@ -1478,7 +1528,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Dolly
 cmd({
     pattern: "dolly",
     desc: "Chat with Dolly",
@@ -1490,7 +1539,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// HuggingChat
 cmd({
     pattern: "hugging",
     desc: "Chat with HuggingChat",
@@ -1502,7 +1550,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// OpenAssistant
 cmd({
     pattern: "openassist",
     desc: "Chat with OpenAssistant",
@@ -1514,7 +1561,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-Neo
 cmd({
     pattern: "gptneo",
     desc: "Chat with GPT-Neo",
@@ -1526,7 +1572,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// GPT-J
 cmd({
     pattern: "gptj",
     desc: "Chat with GPT-J",
@@ -1538,7 +1583,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// FLAN-T5
 cmd({
     pattern: "flant5",
     desc: "Chat with FLAN-T5",
@@ -1550,7 +1594,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Starlin
 cmd({
     pattern: "starlin",
     desc: "Chat with Starlin AI",
@@ -1564,7 +1607,6 @@ cmd({
 
 // ==================== SPECIALTY AI COMMANDS ====================
 
-// Talk AI
 cmd({
     pattern: "talkai",
     desc: "Chat with Talk AI",
@@ -1576,7 +1618,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Brain AI
 cmd({
     pattern: "brain",
     desc: "Chat with Brain AI",
@@ -1588,7 +1629,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Elite AI
 cmd({
     pattern: "elite",
     desc: "Chat with Elite AI Assistant",
@@ -1600,7 +1640,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Elite ChatGPT
 cmd({
     pattern: "elitegpt",
     desc: "Chat with Elite ChatGPT",
@@ -1612,7 +1651,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// AI Assistant
 cmd({
     pattern: "assistant",
     desc: "Chat with AI Assistant",
@@ -1624,7 +1662,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Smart AI
 cmd({
     pattern: "smart",
     desc: "Chat with Smart AI",
@@ -1636,7 +1673,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Genius AI
 cmd({
     pattern: "genius",
     desc: "Chat with Genius AI",
@@ -1648,7 +1684,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Pro AI
 cmd({
     pattern: "proai",
     desc: "Chat with Pro AI",
@@ -1660,7 +1695,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Ultra AI
 cmd({
     pattern: "ultra",
     desc: "Chat with Ultra AI",
@@ -1672,7 +1706,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Max AI
 cmd({
     pattern: "maxai",
     desc: "Chat with Max AI",
@@ -1684,7 +1717,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Nova AI
 cmd({
     pattern: "nova",
     desc: "Chat with Nova AI",
@@ -1696,7 +1728,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Zenith AI
 cmd({
     pattern: "zenith",
     desc: "Chat with Zenith AI",
@@ -1708,7 +1739,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Apex AI
 cmd({
     pattern: "apex",
     desc: "Chat with Apex AI",
@@ -1720,7 +1750,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Vertex AI
 cmd({
     pattern: "vertex",
     desc: "Chat with Vertex AI",
@@ -1732,7 +1761,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Pulse AI
 cmd({
     pattern: "pulse",
     desc: "Chat with Pulse AI",
@@ -1744,7 +1772,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Quantum AI
 cmd({
     pattern: "quantum",
     desc: "Chat with Quantum AI",
@@ -1756,7 +1783,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Neo AI
 cmd({
     pattern: "neo",
     desc: "Chat with Neo AI",
@@ -1768,7 +1794,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Omega AI
 cmd({
     pattern: "omega",
     desc: "Chat with Omega AI",
@@ -1780,7 +1805,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// MathGPT
 cmd({
     pattern: "mathgpt",
     desc: "Solve math problems with MathGPT",
@@ -1792,7 +1816,6 @@ cmd({
     try { reply(await askAI(q)); } catch (e) { reply("❌ Failed to connect to API."); }
 });
 
-// Grammar Checker
 cmd({
     pattern: "grammar",
     desc: "Check grammar and spelling",
