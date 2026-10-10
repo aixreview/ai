@@ -1,15 +1,23 @@
 import { fileURLToPath } from 'url';
 import { cmd } from '../command.js';
 import axios from 'axios';
+import { Web, Pubg } from '../lib/jawi.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
-// Base API endpoint
-const API_BASE = "https://jawadtechhub.onrender.com/gpt2?q=";
+const API_BASES = [
+    Web,                                    // from jawi.js
+    "https://xjawadtech.vercel.app",
+    "https://jawadtechhub.onrender.com"
+];
 
-// Helper function to query the AI API
+const API_KEY = Pubg;
+
+const getRandomBase = () => API_BASES[Math.floor(Math.random() * API_BASES.length)];
+
 async function askAI(prompt) {
-    const res = await axios.get(`${API_BASE}${encodeURIComponent(prompt)}`);
+    const apiUrl = `${getRandomBase()}/gpt2?q=${encodeURIComponent(prompt)}&key=${API_KEY}`;
+    const res = await axios.get(apiUrl);
     if (res.data.status) return res.data.result;
     throw new Error("API Error");
 }
