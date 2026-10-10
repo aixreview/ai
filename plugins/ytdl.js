@@ -5,10 +5,22 @@ import axios from 'axios';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { Web } from '../lib/jawi.js';
+import { Web, Pubg } from '../lib/jawi.js';
 
 const __filename = fileURLToPath(import.meta.url);
-const API_BASE = Web;
+
+
+const API_BASES = [
+    Web,
+    "https://xjawadtech.vercel.app",
+    "https://jawadtechhub.onrender.com"
+];
+
+
+const API_KEY = Pubg;
+
+
+const getRandomBase = () => API_BASES[Math.floor(Math.random() * API_BASES.length)];
 
 const toSmallCaps = (text) => {
     const map = {
@@ -39,35 +51,28 @@ function getVideoId(url) {
     return null;
 }
 
-// ============================================
-// AUDIO APIS
-// ============================================
+
 const getAudioAPIs = (url) => [
-    { url: `${API_BASE}/yta8?url=${encodeURIComponent(url)}`, timeout: 25000 },
-    { url: `${API_BASE}/yta9?url=${encodeURIComponent(url)}`, timeout: 25000 },
-    { url: `${API_BASE}/yta7?url=${encodeURIComponent(url)}`, timeout: 25000 },
-    { url: `${API_BASE}/yta6?url=${encodeURIComponent(url)}`, timeout: 25000 },
-    { url: `${API_BASE}/yta1?url=${encodeURIComponent(url)}`, timeout: 25000 },
-    { url: `${API_BASE}/yta2?url=${encodeURIComponent(url)}`, timeout: 25000 },
-    { url: `${API_BASE}/yta3?url=${encodeURIComponent(url)}`, timeout: 25000 },
-    { url: `${API_BASE}/yta4?url=${encodeURIComponent(url)}`, timeout: 25000 },
-    { url: `${API_BASE}/yta5?url=${encodeURIComponent(url)}`, timeout: 25000 }
+    { url: `${getRandomBase()}/yta8?url=${encodeURIComponent(url)}&key=${API_KEY}`, timeout: 25000 },
+    { url: `${getRandomBase()}/yta9?url=${encodeURIComponent(url)}&key=${API_KEY}`, timeout: 25000 },
+    { url: `${getRandomBase()}/yta7?url=${encodeURIComponent(url)}&key=${API_KEY}`, timeout: 25000 },
+    { url: `${getRandomBase()}/yta6?url=${encodeURIComponent(url)}&key=${API_KEY}`, timeout: 25000 },
+    { url: `${getRandomBase()}/yta1?url=${encodeURIComponent(url)}&key=${API_KEY}`, timeout: 25000 },
+    { url: `${getRandomBase()}/yta2?url=${encodeURIComponent(url)}&key=${API_KEY}`, timeout: 25000 },
+    { url: `${getRandomBase()}/yta3?url=${encodeURIComponent(url)}&key=${API_KEY}`, timeout: 25000 },
+    { url: `${getRandomBase()}/yta4?url=${encodeURIComponent(url)}&key=${API_KEY}`, timeout: 25000 },
+    { url: `${getRandomBase()}/yta5?url=${encodeURIComponent(url)}&key=${API_KEY}`, timeout: 25000 }
 ];
 
-// ============================================
-// NORMAL VIDEO APIS (return download.url → send as VIDEO)
-// Order: V3 → V1 → V2
-// ============================================
+
 const getNormalVideoAPIs = (url) => [
-    `${API_BASE}/ytv3?url=${encodeURIComponent(url)}`,
-    `${API_BASE}/ytv1?url=${encodeURIComponent(url)}`,
-    `${API_BASE}/ytv2?url=${encodeURIComponent(url)}`
+    `${getRandomBase()}/ytv3?url=${encodeURIComponent(url)}&key=${API_KEY}`,
+    `${getRandomBase()}/ytv1?url=${encodeURIComponent(url)}&key=${API_KEY}`,
+    `${getRandomBase()}/ytv2?url=${encodeURIComponent(url)}&key=${API_KEY}`
 ];
 
-// ============================================
-// FALLBACK VIDEO API (returns download.urlx → save to disk + send as DOCUMENT)
-// ============================================
-const getFallbackVideoAPI = (url) => `${API_BASE}/ytdl?url=${encodeURIComponent(url)}`;
+
+const getFallbackVideoAPI = (url) => `${getRandomBase()}/ytdl?url=${encodeURIComponent(url)}&key=${API_KEY}`;
 
 // ============================================
 // COMMAND: play (Auto Audio)
@@ -881,7 +886,7 @@ _⚡ Downloading as document..._
 > Powered by KHAN-MD`
         }, { quoted: mek });
 
-        const apiUrl = `${API_BASE}/ytdl?url=${encodeURIComponent(vid.url)}`;
+        const apiUrl = `${getRandomBase()}/ytdl?url=${encodeURIComponent(vid.url)}&key=${API_KEY}`;
         const response = await axios.get(apiUrl, { timeout: 25000 });
 
         if (!response.data?.status || !response.data?.download?.urlx) {
