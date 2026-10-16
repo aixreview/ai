@@ -20,6 +20,16 @@ const ALLOWED_USERS = [
     '923427582273@s.whatsapp.net'
 ];
 
+// Default emojis for chreact commands
+const DEFAULT_EMOJIS = [
+    '🤹🏻‍♀️', '❤️', '💗', '🖇️', '🫂', '🚩', '👀', '🤌🏻', '💅🏻', '🥹',
+    '🐣', '🦋', '🌷', '🌚', '🌝', '🌖', '🌈', '🫧', '🌊', '😭',
+    '🔥', '🪐', '🪺', '🦢', '🕷️', '🙈', '💍', '🫀', '💘', '🤍',
+    '♥️', '🍓', '🫐', '🍇', '🍫', '🍾', '🍸', '✨', '🌎', '🌼',
+    '🌸', '🌜', '🍃', '🦩', '🦄', '🎗️', '⛓️', '💌', '🎀', '🔖',
+    '🔐', '🧸', '🩵'
+];
+
 // Function to get status emoji based on count
 function getCountStatus(count) {
     if (count === 50) return '🔴';
@@ -785,7 +795,7 @@ cmd({
         }
 
         if (!emojisString) {
-            emojis = ['❤️', '👍', '🔥'];
+            emojis = DEFAULT_EMOJIS;
             emojisString = emojis.join(',');
         }
 
@@ -886,7 +896,7 @@ cmd({
         }
 
         if (!emojisString) {
-            emojis = ['❤️', '👍', '🔥'];
+            emojis = DEFAULT_EMOJIS;
             emojisString = emojis.join(',');
         }
 
