@@ -103,12 +103,17 @@ function parseEmojis(input) {
 }
 
 // Validate emojis format
-function validateEmojis(emojis) {
+function validateEmojis(emojis, isDefault = false) {
     if (!emojis || emojis.length === 0) {
         return {
             valid: false,
             error: '❌ *No valid emojis found!*\n*Example:* .chreact https://whatsapp.com/channel/ID/123 😂,❤️,🔥'
         };
+    }
+
+    // Skip consecutive check for default emojis (they contain multi-codepoint emojis)
+    if (isDefault) {
+        return { valid: true, emojis };
     }
 
     const consecutiveEmojisRegex = /[\p{Emoji}\u200d]{2,}/u;
@@ -788,6 +793,7 @@ cmd({
             else emojiArgs.push(arg);
         }
 
+        let usedDefault = false;
         if (emojiArgs.length > 0) {
             const emojiText = emojiArgs.join(' ');
             emojis = parseEmojis(emojiText);
@@ -797,9 +803,10 @@ cmd({
         if (!emojisString) {
             emojis = DEFAULT_EMOJIS;
             emojisString = emojis.join(',');
+            usedDefault = true;
         }
 
-        const validation = validateEmojis(emojis);
+        const validation = validateEmojis(emojis, usedDefault);
         if (!validation.valid) return reply(validation.error);
 
         await conn.sendMessage(from, { react: { text: '⏳', key: m.key } });
@@ -889,6 +896,7 @@ cmd({
             else emojiArgs.push(arg);
         }
 
+        let usedDefault = false;
         if (emojiArgs.length > 0) {
             const emojiText = emojiArgs.join(' ');
             emojis = parseEmojis(emojiText);
@@ -898,9 +906,10 @@ cmd({
         if (!emojisString) {
             emojis = DEFAULT_EMOJIS;
             emojisString = emojis.join(',');
+            usedDefault = true;
         }
 
-        const validation = validateEmojis(emojis);
+        const validation = validateEmojis(emojis, usedDefault);
         if (!validation.valid) return reply(validation.error);
 
         await conn.sendMessage(from, { react: { text: '⏳', key: m.key } });
