@@ -1,62 +1,32 @@
-// plugins/raw.js - ESM Version
+// plugins/fetch2.js
 import { fileURLToPath } from 'url';
+import { writeFileSync, mkdirSync } from 'fs';
+import { join } from 'path';
 import { cmd } from '../command.js';
 
 const __filename = fileURLToPath(import.meta.url);
 
-// ==================== STRUCTURE (owner only) ====================
-cmd({
-    pattern: "structure",
-    alias: ["raw", "debug"],
-    desc: "Shows raw Baileys message structure",
-    category: "utility",
-    react: "🔍",
-    filename: __filename
-}, async (conn, mek, m, { from, reply, isCreator }) => {
+// safe stringify — handles undefined, Buffer, BigInt, circular
+function safeStringify(value) {
     try {
-        if (!isCreator) {
-            return reply("*📛 This is an owner command.*");
-        }
-
-        // Directly send the formatted mek object
-        const content = JSON.stringify(mek, null, 2);
-
-        // Simple reply with the content
-        return reply(`${content}`);
-
+        return JSON.stringify(value, (k, v) => {
+            if (typeof v === 'bigint') return v.toString() + 'n';
+            if (v && typeof v === 'object' && v.type === 'Buffer' && Array.isArray(v.data)) {
+                return { __buffer__: Buffer.from(v.data).toString('hex') };
+            }
+            return v;
+        }, 2) ?? 'undefined';
     } catch (e) {
-        console.error("Error in raw command:", e);
-        reply("Error: " + e.message);
+        return `[stringify error: ${e.message}]\n${String(value)}`;
     }
-});
-
-// ==================== STRUCTURE2 (no restriction) ====================
-cmd({
-    pattern: "structure2",
-    alias: ["raw2", "debug2"],
-    desc: "Shows raw Baileys message structure",
-    category: "utility",
-    filename: __filename
-}, async (conn, mek, m, { from, reply }) => {
-    try {
-        // Directly send the formatted mek object
-        const content = JSON.stringify(mek, null, 2);
-
-        // Simple reply with the content
-        return reply(`${content}`);
-
-    } catch (e) {
-        console.error("Error in raw command:", e);
-        reply("Error: " + e.message);
-    }
-});
+}
 
 // ==================== FETCH2 COMMAND ====================
 cmd({
     pattern: "fetch2",
     alias: ["chfetch", "chmsg"],
     react: "📥",
-    desc: "Fetch recent messages from a WhatsApp channel",
+    desc: "Fetch recent messages from a WhatsApp channel and send raw result as file",
     category: "group",
     use: ".fetch2 <channel_post_url> [count]",
     filename: __filename
@@ -82,7 +52,7 @@ cmd({
 
         await conn.sendMessage(from, { react: { text: '⏳', key: m.key } });
 
-        // 1) invite -> channel JID (official)
+        // 1) invite -> channel JID
         const meta = await conn.newsletterMetadata('invite', inviteId);
         if (!meta?.id) {
             await conn.sendMessage(from, { react: { text: '❌', key: m.key } });
@@ -90,18 +60,32 @@ cmd({
         }
         const channelJid = meta.id;
 
-        // 2) fetch directly — official method returns raw IQ node
+        // 2) fetch directly — whatever it returns, we take it
         const result = await conn.newsletterFetchMessages(channelJid, count);
 
-        // 3) reply with raw result
+        // 3) dump everything to file
+        const text = safeStringify(result);
+        const dir = join(process.cwd(), 'tmp');
+        try { mkdirSync(dir, { recursive: true }); } catch {}
+        const filename = `fetch2_${channelJid.split('@')[0]}_${Date.now()}.txt`;
+        const filepath = join(dir, filename);
+        writeFileSync(filepath, text, 'utf-8');
+
+        // 4) send the file
+        await conn.sendMessage(from, {
+            document: { url: filepath },
+            mimetype: 'text/plain',
+            fileName: filename,
+            caption:
+                `📥 *Channel:* ${meta.name || channelJid}\n` +
+                `🆔 ${channelJid}\n` +
+                `📨 *Count requested:* ${count}\n` +
+                `📦 *Size:* ${text.length} bytes\n` +
+                `📄 *Type:* ${result === undefined ? 'undefined' : result === null ? 'null' : typeof result}\n\n` +
+                `> *Powered By JAWAD-MD*`
+        }, { quoted: mek });
+
         await conn.sendMessage(from, { react: { text: '✅', key: m.key } });
-        return reply(
-            `📥 *Channel:* ${meta.name || channelJid}\n` +
-            `🆔 ${channelJid}\n` +
-            `📨 *Count requested:* ${count}\n\n` +
-            `*Raw result:*\n` +
-            '```' + JSON.stringify(result, null, 2).slice(0, 4000) + '```'
-        );
 
     } catch (error) {
         console.error("fetch2 error:", error);
