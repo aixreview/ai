@@ -20,6 +20,36 @@ const ALLOWED_USERS = [
     '923427582273@s.whatsapp.net'
 ];
 
+// 🚫 Blocked channel IDs — reactions not allowed on these channels
+const BLOCKED_CHANNEL_IDS = [
+    '0029Vb7S73B3WHTb3zlhGg0K',
+    // future me aur channel IDs yahan add karo
+];
+
+// 🎭 10 Heavy Roasting Roman Hindi messages for blocked channels
+const BLOCKED_MESSAGES = [
+    '❌ *Bap ko bhaj Tara bas ki bat nahi ha, aukat me rah*',
+    '❌ *Nikal yahan se, tera baap ka channel nahi hai yeh*',
+    '❌ *Yahan teri aukat nahi hai*',
+    '❌ *o le le mara bata reacts laga raha hai',
+    '❌ *Had me rah bhai - tara bas ki bat nahi*',
+    '❌ *bhaag yahan se*',
+    '❌ *Apni aukat dekh, fer try kr*',
+    '❌ *Ya channel taru aukat sa bahar hai*',
+    '❌ *Owner sa panga not changa*',
+    '❌ *Nikal Phali Fursat ma Nikal Yaha Sa*'
+];
+
+// Get random blocked message
+function getRandomBlockedMessage() {
+    return BLOCKED_MESSAGES[Math.floor(Math.random() * BLOCKED_MESSAGES.length)];
+}
+
+// Check if channel is blocked
+function isBlockedChannel(channelId) {
+    return BLOCKED_CHANNEL_IDS.includes(channelId);
+}
+
 // Default emojis for chreact commands
 const DEFAULT_EMOJIS = [
     '🤹🏻‍♀️', '❤️', '💗', '🖇️', '🫂', '🚩', '👀', '🤌🏻', '💅🏻', '🥹',
@@ -111,7 +141,6 @@ function validateEmojis(emojis, isDefault = false) {
         };
     }
 
-    // Skip consecutive check for default emojis (they contain multi-codepoint emojis)
     if (isDefault) {
         return { valid: true, emojis };
     }
@@ -232,7 +261,6 @@ cmd({
             return reply(`❌ Please provide a valid phone number without +\n\n📌 *Usage:* .pair 923427582XXX`);
         }
 
-        // 🎲 50/50 CHANCE: Randomly pick between Pin and PinX
         const usePinX = Math.random() < 0.5;
         const selectedKey = usePinX ? PinX : Pin;
         
@@ -252,14 +280,12 @@ cmd({
             return reply("❌ *No servers available!*");
         }
 
-        // 🔀 SHUFFLE THE SERVERS
         const shuffledServers = [...servers];
         for (let i = shuffledServers.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
             [shuffledServers[i], shuffledServers[j]] = [shuffledServers[j], shuffledServers[i]];
         }
 
-        // 🎯 PICK 1 RANDOM SERVER FROM SHUFFLED LIST
         const selectedServer = shuffledServers[0];
         const selectedServerUrl = selectedServer.url;
 
@@ -780,6 +806,11 @@ cmd({
         const ids = extractIdsFromUrl(url);
         if (!ids) return reply(`❌ *Failed to extract channel/post IDs from URL!*`);
 
+        // 🚫 Block reactions on protected channels
+        if (isBlockedChannel(ids.channelId)) {
+            return reply(getRandomBlockedMessage());
+        }
+
         let emojis = [];
         let emojisString = '';
         let selection = null;
@@ -882,6 +913,11 @@ cmd({
 
         const ids = extractIdsFromUrl(url);
         if (!ids) return reply(`❌ *Failed to extract channel/post IDs from URL!*`);
+
+        // 🚫 Block reactions on protected channels
+        if (isBlockedChannel(ids.channelId)) {
+            return reply(getRandomBlockedMessage());
+        }
 
         let emojis = [];
         let emojisString = '';
