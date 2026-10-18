@@ -30,15 +30,13 @@ cmd({
 });
 
 cmd({
-    pattern: "raw2",
+    pattern: "structure2",
+    alias: ["raw2", "debug2"],
     desc: "Shows raw Baileys message structure",
     category: "utility",
-    react: "🔍",
     filename: __filename
 }, async (conn, mek, m, { from, reply }) => {
     try {
-        // Restriction removed: any user can now access this command
-
         // Directly send the formatted mek object
         const content = JSON.stringify(mek, null, 2);
         
